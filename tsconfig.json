@@ -1,0 +1,26 @@
+
+{
+    "compilerOptions": {
+      "outDir": "dist",
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "declaration": true,
+      "lib": [
+        "esnext",
+        "dom",
+        "es2015"
+      ],
+      "module": "es2015",
+      "moduleResolution": "node",
+      "target": "es5",
+     
+  
+    },
+    "include": [
+      "lib/"
+    ],
+    "exclude": [
+      "node_modules",
+    ],
+  
+  }

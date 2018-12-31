@@ -1,0 +1,28 @@
+{
+  "name": "insta-locale",
+  "version": "1.0.0",
+  "description": "Reactive simplifed multi langauge locale module works  with Angular, React, Vue or any nodejs based front-end app.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "prepublish": "npm run build ",
+    "build": "tsc && mkdir -p insta-locale &&  cp -r dist/.  insta-locale ",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "state",
+    "storage",
+    "redux",
+    "state management"
+  ],
+  "author": "Walid Abou Ali",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^3.0.1"
+  },
+  "dependencies": {
+    "injection-js": "^2.2.1",
+    "reflect-metadata": "^0.1.12",
+    "rxjs": "^6.2.2"
+  }
+}
