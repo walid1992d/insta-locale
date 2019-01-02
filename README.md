@@ -1,3 +1,9 @@
+| Parameter  | Description |
+| ------------- | ------------- |
+| version  | The version of your state, its important to change version whenever you apply changes to state schema, so the module detects the version change and applies migration  |
+| encryptionKey  | key used to encrypt your state store before saving it  |
+| appName  | The key name of your state in the browser localstorage  |
+
 # insta-locale
 
 Reactive simplifed multi langauge locale module that works with Angular, React, Vue or any nodejs based front-end app. The module allows you to have different langauges dictionaries, control styles direction according to selected language, sync the user language with browser localStorage, it also allows your components to listen to language change event.
