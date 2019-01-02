@@ -23,12 +23,10 @@ var LocaleService = /** @class */ (function () {
         configurable: true
     });
     LocaleService.prototype.init = function (config) {
-        console.log('CONFIG', config);
         this.langauges = config.languages;
         this.saveToBrowser = config.saveToBrowser === undefined ? true : config.saveToBrowser;
         this.productionMode = config.productionMode;
         var defaultLanguage = this.langauges.find(function (l) { return l.key === config.defaultLangaugeKey; });
-        console.log('defaultLanguage', defaultLanguage);
         if (!defaultLanguage) {
             this.error('defualt language key not found in langauges array');
         }
@@ -38,20 +36,17 @@ var LocaleService = /** @class */ (function () {
         }
     };
     LocaleService.prototype.setLanguage = function (langaugeKey) {
-        console.log('SET LANGUAGE', langaugeKey);
         var langauge = this.langauges.find(function (l) { return l.key === langaugeKey; });
         if (!langauge) {
             this.error('language key not found in langauges array');
             return;
         }
         this.activeLanguage = langauge;
-        console.log(' LANGUAGE SET', this.activeLanguage);
         document.body.className = this.activeLanguage.dir;
         this.saveLanguageInBrowser(langauge);
         this.languageChanged.next(langauge);
     };
     LocaleService.prototype.i18n = function (key) {
-        console.log(' LANGUAGE SETTED', this.currentLanguage);
         var dictionary = this.currentLanguage.dictionary;
         var label = dictionary[key];
         if (!label) {

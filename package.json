@@ -6,14 +6,15 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "prepublish": "npm run build ",
-    "build": "tsc && mkdir -p insta-locale &&  cp -r dist/.  insta-locale ",
+    "build:dev": "tsc && mkdir -p insta-locale &&  cp -r dist/.  insta-locale",
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "state",
-    "storage",
-    "redux",
-    "state management"
+    "locale",
+    "18n",
+    "multi language",
+    "langauge"
   ],
   "author": "Walid Abou Ali",
   "license": "MIT",
