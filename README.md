@@ -128,6 +128,7 @@ console.log(myApplicationName);
 ```
 
 the argument of the `i18n` is any key defined in your dictionary, the above example will return these values in each language according the config we set earlier
+
 |Language | Value |
 | ------ | ------ |
 | English (en) | `"My App"` |
@@ -157,6 +158,7 @@ it will always return `appBodyName`, and it wil throw a console warning if the y
  ```
  and you can add any extra rules required for your app.
  To add specified styling for a component according to app directiom, go to the component styles `.rtl &` or `.ltr &`, rules, for example:
+ 
  ```
  .errorMessage {
      color: red;
@@ -168,7 +170,7 @@ it will always return `appBodyName`, and it wil throw a console warning if the y
      }
  }
  ```
- 
+
  and your app will be running in multi directions styles.
 
 ## Versioning
