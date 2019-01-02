@@ -11,23 +11,23 @@ export class LocaleService {
         this.setLanguage = this.setLanguage.bind(this);
         this.saveLanguageInBrowser = this.saveLanguageInBrowser.bind(this);
         this.getLanguageFromBrowser = this.getLanguageFromBrowser.bind(this);
-        this.warining = this.warining.bind(this);
+        this.warning = this.warning.bind(this);
         this.error = this.error.bind(this);
     }
     private activeLanguage: LangaugeModel;
-    langauges: LangaugeModel[];
+    languages: LangaugeModel[];
     saveToBrowser: boolean;
     productionMode: boolean;
-    public languageChanged: Subject<LangaugeModel> = new Subject<LangaugeModel>();
+    public languageChanged: Subject<LangaugeShortModel> = new Subject<LangaugeShortModel>();
     public get currentLanguage(): LangaugeModel {
         return this.activeLanguage;
     }
     
     public init(config: LocaleConfigModel) {
-        this.langauges = config.languages;
+        this.languages = config.languages;
         this.saveToBrowser = config.saveToBrowser === undefined ? true : config.saveToBrowser;
-        this.productionMode = config.productionMode;
-        const defaultLanguage =  this.langauges.find(l => l.key === config.defaultLangaugeKey); 
+        this.productionMode = !!config.productionMode;
+        const defaultLanguage =  this.languages.find(l => l.key === config.defaultLangaugeKey); 
         if(!defaultLanguage) {
             this.error('defualt language key not found in langauges array');
         } else {
@@ -37,7 +37,7 @@ export class LocaleService {
     }
 
     public setLanguage(langaugeKey: string) {
-        const langauge =  this.langauges.find(l => l.key === langaugeKey); 
+        const langauge =  this.languages.find(l => l.key === langaugeKey); 
         if(!langauge) {
             this.error('language key not found in langauges array');
             return;
@@ -46,14 +46,14 @@ export class LocaleService {
 
         document.body.className=this.activeLanguage.dir;
         this.saveLanguageInBrowser(langauge);
-        this.languageChanged.next(langauge);
+        this.languageChanged.next({key: langauge.key, dir:langauge.dir});
     } 
 
     public i18n(key: string): string {
         const dictionary = this.currentLanguage.dictionary;
         const label = dictionary[key];
         if(!label) {
-            this.warining(`unable in find key  '${key}' in language '${this.currentLanguage.key}' `);
+            this.warning(`unable in find key  '${key}' in language '${this.currentLanguage.key}' `);
             return key;
         }
         return label;
@@ -74,10 +74,10 @@ export class LocaleService {
         if(!saved) {
             return null;
         }
-        return this.langauges.find(l => l.key === saved);
+        return this.languages.find(l => l.key === saved);
     }
  
-    private warining(message: string) {
+    private warning(message: string) {
         if(this.productionMode) {
             return;
         }
@@ -99,6 +99,10 @@ export interface LangaugeModel {
     key: string;
     dir: string;
     dictionary: Object;
+}
+ interface LangaugeShortModel {
+    key: string;
+    dir: string;
 }
 export interface LocaleConfigModel {
     languages: LangaugeModel[];
