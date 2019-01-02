@@ -116,7 +116,8 @@ it  emits an object of `{key: string, dir: string}` whenever language changes
  
  ### Rendering app labels
  to render the app labels in your template, go to the component that needs to render labels and get instance of the service 
-  ```
+ 
+```
 import { getLocaleService } from 'insta-locale';
 const localeService = getLocaleService();
 ```
@@ -158,7 +159,7 @@ it will always return `appBodyName`, and it wil throw a console warning if the y
  ```
  and you can add any extra rules required for your app.
  To add specified styling for a component according to app directiom, go to the component styles `.rtl &` or `.ltr &`, rules, for example:
- 
+
  ```
  .errorMessage {
      color: red;
