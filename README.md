@@ -116,7 +116,7 @@ it  emits an object of `{key: string, dir: string}` whenever language changes
  
  ### Rendering app labels
  to render the app labels in your template, go to the component that needs to render labels and get instance of the service 
- 
+
 ```
 import { getLocaleService } from 'insta-locale';
 const localeService = getLocaleService();
@@ -130,7 +130,7 @@ console.log(myApplicationName);
 
 the argument of the `i18n` is any key defined in your dictionary, the above example will return these values in each language according the config we set earlier
 
-|Language | Value |
+| Language | Value |
 | ------ | ------ |
 | English (en) | `"My App"` |
 | Arabic (ar) | `"تطبيقي"` |
@@ -145,32 +145,46 @@ console.log(myText);
 it will always return `appBodyName`, and it wil throw a console warning if the you are not in production mode
 
  ### App Direction
- To handle multi app direction its prefered to use a module that allows css nesting like SASS or LESS. The locale module set the class of the app body tag to the language direction, so if you are in `rtl` language, inspect your body tag in browser and it should be `<body class='rtl'>`, now in your main style sheets add these rules
+ To handle multi app direction its prefered to use a module that allows css nesting like SASS or LESS. The locale module set the class of the app body tag to the language direction, so if you are in `rtl` language, inspect your body tag in browser and it should be ```<body class='rtl'>```, now in your main style sheets add these rules
 
- ```
- body {
+```
+  
+body {
+
     &.rtl {
+
         direction: rtl; 
+
     }
+
     &.ltr {
+
         direction: ltr;
+
     }
+
  }
- ```
+```
  and you can add any extra rules required for your app.
  To add specified styling for a component according to app directiom, go to the component styles `.rtl &` or `.ltr &`, rules, for example:
 
- ```
+```
  .errorMessage {
+
      color: red;
+
      .ltr &{
+
        border-left: 5px solid red;
      }
+
      .rtl &{
+
        border-right: 5px solid red;
      }
+
  }
- ```
+```
 
  and your app will be running in multi directions styles.
 
