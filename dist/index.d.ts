@@ -3,17 +3,17 @@ import { Subject } from 'rxjs';
 export declare class LocaleService {
     constructor();
     private activeLanguage;
-    langauges: LangaugeModel[];
+    languages: LangaugeModel[];
     saveToBrowser: boolean;
     productionMode: boolean;
-    languageChanged: Subject<LangaugeModel>;
+    languageChanged: Subject<LangaugeShortModel>;
     readonly currentLanguage: LangaugeModel;
     init(config: LocaleConfigModel): void;
     setLanguage(langaugeKey: string): void;
     i18n(key: string): string;
     private saveLanguageInBrowser;
     private getLanguageFromBrowser;
-    private warining;
+    private warning;
     private error;
 }
 export declare function getLocaleService(): LocaleService;
@@ -22,9 +22,14 @@ export interface LangaugeModel {
     dir: string;
     dictionary: Object;
 }
+interface LangaugeShortModel {
+    key: string;
+    dir: string;
+}
 export interface LocaleConfigModel {
     languages: LangaugeModel[];
     defaultLangaugeKey: string;
     saveToBrowser?: boolean;
     productionMode?: boolean;
 }
+export {};

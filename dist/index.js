@@ -14,6 +14,12 @@ var LocaleService = /** @class */ (function () {
     function LocaleService() {
         this.languageChanged = new Subject();
         this.i18n = this.i18n.bind(this);
+        this.init = this.init.bind(this);
+        this.setLanguage = this.setLanguage.bind(this);
+        this.saveLanguageInBrowser = this.saveLanguageInBrowser.bind(this);
+        this.getLanguageFromBrowser = this.getLanguageFromBrowser.bind(this);
+        this.warning = this.warning.bind(this);
+        this.error = this.error.bind(this);
     }
     Object.defineProperty(LocaleService.prototype, "currentLanguage", {
         get: function () {
@@ -23,10 +29,10 @@ var LocaleService = /** @class */ (function () {
         configurable: true
     });
     LocaleService.prototype.init = function (config) {
-        this.langauges = config.languages;
+        this.languages = config.languages;
         this.saveToBrowser = config.saveToBrowser === undefined ? true : config.saveToBrowser;
-        this.productionMode = config.productionMode;
-        var defaultLanguage = this.langauges.find(function (l) { return l.key === config.defaultLangaugeKey; });
+        this.productionMode = !!config.productionMode;
+        var defaultLanguage = this.languages.find(function (l) { return l.key === config.defaultLangaugeKey; });
         if (!defaultLanguage) {
             this.error('defualt language key not found in langauges array');
         }
@@ -36,7 +42,7 @@ var LocaleService = /** @class */ (function () {
         }
     };
     LocaleService.prototype.setLanguage = function (langaugeKey) {
-        var langauge = this.langauges.find(function (l) { return l.key === langaugeKey; });
+        var langauge = this.languages.find(function (l) { return l.key === langaugeKey; });
         if (!langauge) {
             this.error('language key not found in langauges array');
             return;
@@ -44,13 +50,13 @@ var LocaleService = /** @class */ (function () {
         this.activeLanguage = langauge;
         document.body.className = this.activeLanguage.dir;
         this.saveLanguageInBrowser(langauge);
-        this.languageChanged.next(langauge);
+        this.languageChanged.next({ key: langauge.key, dir: langauge.dir });
     };
     LocaleService.prototype.i18n = function (key) {
         var dictionary = this.currentLanguage.dictionary;
         var label = dictionary[key];
         if (!label) {
-            this.warining("unable in find key  '" + key + "' in language '" + this.currentLanguage.key + "' ");
+            this.warning("unable in find key  '" + key + "' in language '" + this.currentLanguage.key + "' ");
             return key;
         }
         return label;
@@ -69,9 +75,9 @@ var LocaleService = /** @class */ (function () {
         if (!saved) {
             return null;
         }
-        return this.langauges.find(function (l) { return l.key === saved; });
+        return this.languages.find(function (l) { return l.key === saved; });
     };
-    LocaleService.prototype.warining = function (message) {
+    LocaleService.prototype.warning = function (message) {
         if (this.productionMode) {
             return;
         }
