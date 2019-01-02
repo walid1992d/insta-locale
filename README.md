@@ -94,10 +94,11 @@ const localeService = getLocaleService();
 ### Listening to language change
  if a component needs to listen to language change, go the component and get instance of the service
  
- ```
+```
 import { getLocaleService } from 'insta-locale';
 const localeService = getLocaleService();
 ```
+
 subscribe to `languageChanged` observable
 
 ```
