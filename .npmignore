@@ -3,3 +3,4 @@ lib/
 tsconfig.json
 node_modules
 insta-locale/
+coverage/
