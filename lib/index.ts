@@ -7,6 +7,12 @@ import { Subject } from 'rxjs';
 export class LocaleService {
     public constructor() {
         this.i18n = this.i18n.bind(this);
+        this.init = this.init.bind(this);
+        this.setLanguage = this.setLanguage.bind(this);
+        this.saveLanguageInBrowser = this.saveLanguageInBrowser.bind(this);
+        this.getLanguageFromBrowser = this.getLanguageFromBrowser.bind(this);
+        this.warining = this.warining.bind(this);
+        this.error = this.error.bind(this);
     }
     private activeLanguage: LangaugeModel;
     langauges: LangaugeModel[];
