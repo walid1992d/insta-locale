@@ -7,7 +7,7 @@
   "scripts": {
     "prepublish": "npm run build ",
     "build:dev": "tsc && mkdir -p insta-locale &&  cp -r dist/.  insta-locale",
-    "build": "tsc",
+    "build": "npm run test && tsc",
     "test": "jest",
     "coverage": "jest --coverage"
 
