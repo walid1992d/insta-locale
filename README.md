@@ -190,7 +190,7 @@ body {
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/walid1992d/insta-state/tags). 
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/walid1992d/insta-locale/tags). 
 
 ## Authors
 
