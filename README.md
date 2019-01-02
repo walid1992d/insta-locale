@@ -53,6 +53,7 @@ const languagesList: LangaugeModel[] = [
 ];
 ```
 each language consists of three parameters
+
 | Parameter | Discription |
 | ------ | ------ |
 | key | the language unique id, can by any string of your preference |
@@ -61,6 +62,7 @@ each language consists of three parameters
 
 
 init the locale service with the following parameters
+
 ```
 localeService.init({
     languages: languagesList,
@@ -81,14 +83,18 @@ the config consists of four parameters
 
 ### Setting the language
 The service by default will set the app language to the default language you specified in the config, unless the user has pre-saved language in the browser, it will take the browser saved one. To set the language manually from a component, go to the component where it needs to set the app language, and get instance of the service
+
 ```
 import { getLocaleService } from 'insta-locale';
 const localeService = getLocaleService();
 ```
+
  then use the `setLanguage` function to set the desired language from your languages list
+
  ```
  localeService.setLanguage('en');
  ```
+
  if `saveToBrowser` is set to `true`, you should find the language saved in browser localStorage
  
 ### Listening to language change
@@ -115,10 +121,12 @@ import { getLocaleService } from 'insta-locale';
 const localeService = getLocaleService();
 ```
 then get the label value using the `i18n` function, for example
+
 ```
 const myApplicationName = localeService.118n('appTitle');
 console.log(myApplicationName);
 ```
+
 the argument of the `i18n` is any key defined in your dictionary, the above example will return these values in each language according the config we set earlier
 |Language | Value |
 | ------ | ------ |
@@ -127,6 +135,7 @@ the argument of the `i18n` is any key defined in your dictionary, the above exam
 | French (fr) | `"mon application"` |
 
 in case you passed a key that doesn't exists, it will return the key itself, for example
+
 ```
 const myText = localeService.118n('appBodyName');
 console.log(myText);
@@ -135,6 +144,7 @@ it will always return `appBodyName`, and it wil throw a console warning if the y
 
  ### App Direction
  To handle multi app direction its prefered to use a module that allows css nesting like SASS or LESS. The locale module set the class of the app body tag to the language direction, so if you are in `rtl` language, inspect your body tag in browser and it should be `<body class='rtl'>`, now in your main style sheets add these rules
+
  ```
  body {
     &.rtl {
@@ -158,6 +168,7 @@ it will always return `appBodyName`, and it wil throw a console warning if the y
      }
  }
  ```
+ 
  and your app will be running in multi directions styles.
 
 ## Versioning
