@@ -183,6 +183,13 @@ describe('LocaleService class', () => {
 
         })
     })
-    
+
+    describe('currentLanguage()', ()=> {
+        it('should return the current active language', ()=> {
+            localeService.activeLanguage = languages[0];
+            const lang = localeService.currentLanguage;
+            expect(lang).toEqual({dir: lang.dir, key: lang.key});
+        })
+    })    
 
 })

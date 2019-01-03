@@ -19,8 +19,8 @@ export class LocaleService {
     saveToBrowser: boolean;
     productionMode: boolean;
     public languageChanged: Subject<LangaugeShortModel> = new Subject<LangaugeShortModel>();
-    public get currentLanguage(): LangaugeModel {
-        return this.activeLanguage;
+    public get currentLanguage(): LangaugeShortModel {
+        return {key: this.activeLanguage.key, dir: this.activeLanguage.dir};
     }
     
     public init(config: LocaleConfigModel) {
@@ -50,10 +50,10 @@ export class LocaleService {
     } 
 
     public i18n(key: string): string {
-        const dictionary = this.currentLanguage.dictionary;
+        const dictionary = this.activeLanguage.dictionary;
         const label = dictionary[key];
         if(!label) {
-            this.warning(`unable in find key  '${key}' in language '${this.currentLanguage.key}' `);
+            this.warning(`unable in find key  '${key}' in language '${this.activeLanguage.key}' `);
             return key;
         }
         return label;
