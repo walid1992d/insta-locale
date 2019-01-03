@@ -1,6 +1,6 @@
 # insta-locale
 
-Reactive simplifed multi langauge locale module that works with Angular, React, Vue or any nodejs based front-end app. The module allows you to have different langauges dictionaries, control styles direction according to selected language, sync the user language with browser localStorage, it also allows your components to listen to language change event.
+Reactive simplifed multi language locale module that works with Angular, React, Vue or any nodejs based front-end app. The module allows you to have different langauges dictionaries, control styles direction according to selected language, sync the user language with browser localStorage, it also allows your components to listen to language change event.
 
 ## Getting Started
 These instructions will guide you to install and integrate the insta-locale module in your app.
