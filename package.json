@@ -1,6 +1,6 @@
 {
   "name": "insta-locale",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Reactive simplifed multi langauge locale module works  with Angular, React, Vue or any nodejs based front-end app.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
