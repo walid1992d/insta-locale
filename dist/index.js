@@ -23,7 +23,7 @@ var LocaleService = /** @class */ (function () {
     }
     Object.defineProperty(LocaleService.prototype, "currentLanguage", {
         get: function () {
-            return this.activeLanguage;
+            return { key: this.activeLanguage.key, dir: this.activeLanguage.dir };
         },
         enumerable: true,
         configurable: true
@@ -53,10 +53,10 @@ var LocaleService = /** @class */ (function () {
         this.languageChanged.next({ key: langauge.key, dir: langauge.dir });
     };
     LocaleService.prototype.i18n = function (key) {
-        var dictionary = this.currentLanguage.dictionary;
+        var dictionary = this.activeLanguage.dictionary;
         var label = dictionary[key];
         if (!label) {
-            this.warning("unable in find key  '" + key + "' in language '" + this.currentLanguage.key + "' ");
+            this.warning("unable in find key  '" + key + "' in language '" + this.activeLanguage.key + "' ");
             return key;
         }
         return label;
