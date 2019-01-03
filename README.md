@@ -96,6 +96,21 @@ const localeService = getLocaleService();
  ```
 
  if `saveToBrowser` is set to `true`, you should find the language saved in browser localStorage
+
+### Getting the current active langauge
+
+to get the current active language, simple get instance of the service
+```
+import { getLocaleService } from 'insta-locale';
+const localeService = getLocaleService();
+```
+
+then call the `currentLanguage` getter
+```
+const language = localeService.currentLanguage;
+console.log(language);
+```
+it returns an object of `{key: string, dir: string}`;
  
 ### Listening to language change
  if a component needs to listen to language change, go the component and get instance of the service
