@@ -52,12 +52,26 @@ var LocaleService = /** @class */ (function () {
         this.saveLanguageInBrowser(langauge);
         this.languageChanged.next({ key: langauge.key, dir: langauge.dir });
     };
-    LocaleService.prototype.i18n = function (key) {
+    LocaleService.prototype.i18n = function (key, vars) {
+        var _this = this;
+        if (vars === void 0) { vars = {}; }
         var dictionary = this.activeLanguage.dictionary;
         var label = dictionary[key];
         if (!label) {
             this.warning("unable in find key  '" + key + "' in language '" + this.activeLanguage.key + "' ");
             return key;
+        }
+        var foundParams = label.match(/[^{\}]+(?=})/g);
+        if (foundParams) {
+            foundParams.forEach(function (param) {
+                if (vars && vars[param]) {
+                    label = label.replace("{" + param + "}", vars[param]);
+                }
+                else {
+                    label = label.replace("{" + param + "}", '');
+                    _this.warning("variable '" + param + " found in label value but wasn't pass to i18n function in vars argument");
+                }
+            });
         }
         return label;
     };

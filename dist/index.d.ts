@@ -10,7 +10,7 @@ export declare class LocaleService {
     readonly currentLanguage: LangaugeShortModel;
     init(config: LocaleConfigModel): void;
     setLanguage(langaugeKey: string): void;
-    i18n(key: string): string;
+    i18n(key: string, vars?: Object): string;
     private saveLanguageInBrowser;
     private getLanguageFromBrowser;
     private warning;
