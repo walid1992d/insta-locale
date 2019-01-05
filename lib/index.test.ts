@@ -6,6 +6,7 @@ const languages: LangaugeModel[] = [
         dir: 'ltr',
         dictionary: {
             'testLabel': 'Test Label',
+            'testLabelVar': 'Hi {name}, welcome back ',
         }
 
     }, {
@@ -13,6 +14,8 @@ const languages: LangaugeModel[] = [
         dir: 'rtl',
         dictionary: {
             'testLabel': 'عنوان تجريبي',
+            'testLabelVar': 'مرحبا{name} ، أهلاً بعودتك ',
+
 
         }
     }
@@ -122,6 +125,22 @@ describe('LocaleService class', () => {
         it('should throw warning if key not exists in current language', ()=> {
             localeService.i18n('testLabel2');
             expect(console.warn).toHaveBeenCalled();
+        })
+        it('should return the the parameterized label if it has variabes and variables are passed', ()=>  {
+            const text = localeService.i18n('testLabelVar', {name: 'Walid'});
+            const expected = languages[0].dictionary['testLabelVar'].replace('{name}','Walid');
+            expect(text).toEqual(expected);
+        })
+        it('should replace vars with empty string ig it has variabes and variables are not passed', ()=>  {
+            const text = localeService.i18n('testLabelVar');
+            const expected = languages[0].dictionary['testLabelVar'].replace('{name}','');
+            expect(text).toEqual(expected);
+
+        })
+        it('should throw a warning if it has variabes and variables are not passed', ()=>  {
+            const text = localeService.i18n('testLabelVar');
+            expect(console.warn).toHaveBeenCalled();
+
         })
     });
     describe('setLanguage()', () => {

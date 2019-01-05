@@ -159,6 +159,37 @@ console.log(myText);
 ```
 it will always return `appBodyName`, and it wil throw a console warning if the you are not in production mode
 
+ ### Rendering app labels with parameters
+ 
+ alot of times you need to add a dynamic value inside your app labels, to do that simply add your variable name in the label surrounded by curly braces, for example:
+ ```
+ const languagesList: LangaugeModel[] = [
+    {
+        key: 'en',
+        dir: 'ltr',
+        dictionary: {
+            'appTitle': 'My App',
+            'welcomeMessage: 'Hi {username}, welcome back'
+        }
+    },
+```
+here, the module expects a variable named `username` to be passed dynamically to the string, to pass the value pass it inside the vars object in the `i18n`  function 
+
+```
+const welcomeText = localeService.118n('welcomeMessage',{ username: 'Walid'});
+console.log(myText);
+```
+it will return `Hi Walid, welcome back`;
+
+in case you didn't pass the `{ username: 'Walid'}` argument to `i18n` it will return the string without the variables and throw a console warning, for example 
+
+```
+const welcomeText = localeService.118n('welcomeMessage');
+```
+it will return `Hi , welcome back`;
+
+You can add as much variables as you want to every label in the dictionary.
+
  ### App Direction
  To handle multi app direction its prefered to use a module that allows css nesting like SASS or LESS. The locale module set the class of the app body tag to the language direction, so if you are in `rtl` language, inspect your body tag in browser and it should be ```<body class='rtl'>```, now in your main style sheets add these rules
 

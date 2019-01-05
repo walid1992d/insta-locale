@@ -49,12 +49,24 @@ export class LocaleService {
         this.languageChanged.next({key: langauge.key, dir:langauge.dir});
     } 
 
-    public i18n(key: string): string {
+    public i18n(key: string, vars:Object = {}): string {
         const dictionary = this.activeLanguage.dictionary;
-        const label = dictionary[key];
+        let label = dictionary[key];
         if(!label) {
             this.warning(`unable in find key  '${key}' in language '${this.activeLanguage.key}' `);
             return key;
+        }
+        const foundParams = label.match(/[^{\}]+(?=})/g);
+        if(foundParams) {
+            foundParams.forEach(param => {
+                if(vars && vars[param]) {
+                    label = label.replace(`{${param}}`,vars[param]);
+
+                } else {
+                    label = label.replace(`{${param}}`,'');
+                    this.warning(`variable '${param} found in label value but wasn't pass to i18n function in vars argument`);
+                }
+            });
         }
         return label;
     }
